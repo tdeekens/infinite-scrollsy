@@ -1,27 +1,27 @@
-# Infinite-Scrollsy
+# Infinite-scrollsy
 
 It is a module for [AngularJS](http://angularjs.org/) which allow you to attach an event handler to the element when this element
 has been scrolled almost to its bottom. In most of the case it will be used for infinite scrolling.
 
 > `bower install infinite-scrollsy --save-dev`
 
-## Why Infinite-Scrollsy and reasoning
+## Why Infinite-scrollsy and reasoning
 
 I know at least five directives solving the problem of infinite scrolling so I feel an argument on why I felt the necessity to build another one should be made.
 
 ### No external dependencies
 
-Infinite-Scrollsy does not have any dependency other than jQuery as some other libraries do.
+Infinite-scrollsy does not have any dependency other than jQuery as some other libraries do.
 
 ### Performant throttling and external control
 
-Infinite-Scrollsy has multiple options to allow the outer scope throttle or break out of its internal computations. It can be idled or halted after invoking the handler for a specific amount of time.
+Infinite-scrollsy has multiple options to allow the outer scope throttle or break out of its internal computations. It can be idled or halted after invoking the handler for a specific amount of time.
 
 It's also performant in handling the scroll event being triggered at a rapid pace by debouncing it's internal event handler.
 
 ### DOM encapsulation
 
-Infinite-Scrollsy solely performs measurements on internal elements not depending on the window or documents sizing. Still it takes it's the browser window's size into account when demanded.
+Infinite-scrollsy solely performs measurements on internal elements not depending on the window or documents sizing. Still it takes it's the browser window's size into account when demanded.
 
 ## Documentation
 
@@ -68,5 +68,5 @@ The following section gives a brief outline on how to configure the directive in
 ### Installation
 
 Copy the `dist/infinte-scrollsy.min.js` to your project and import it or type
-`bower install infinite-scrollsy --save-dev` if you are using bower
+`bower install Infinite-scrollsy --save-dev` if you are using bower
 as a dependency manager.
