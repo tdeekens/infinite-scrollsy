@@ -3,6 +3,8 @@
 It is a module for [AngularJS](http://angularjs.org/) which allow you to attach an event handler to the element when this element
 has been scrolled almost to its bottom. In most of the case it will be used for infinite scrolling.
 
+> `bower install infinite-scrollsy --save-dev`
+
 ## Why Infinite-Scrollsy and reasoning
 
 I know at least five directives solving the problem of infinite scrolling so I feel an argument on why I felt the necessity to build another one should be made.
@@ -25,7 +27,7 @@ Infinite-Scrollsy solely performs measurements on internal elements not dependin
 
 The following section gives a brief outline on how to configure the directive in your setup.
 
-### Isolated scope:
+### Isolated scope
 
 - infinite-scrollsy-handler (passed as &)
    - Callback triggered when scrolling conditions hold
@@ -34,7 +36,7 @@ The following section gives a brief outline on how to configure the directive in
      calculations not causing scrolling callback invocation.
      Useful to to skip loading while loading is in progress!
 
-### Attributes:
+### Attributes
 
 - infinite-scrollsy-throttle (Default 100ms)
    - Time based throttling of scrolling
@@ -62,3 +64,9 @@ The following section gives a brief outline on how to configure the directive in
    infinite-scrollsy-flex='true'
   ></div>
 ```
+
+### Installation
+
+Copy the `dist/infinte-scrollsy.min.js` to your project and import it or type
+`bower install infinite-scrollsy --save-dev` if you are using bower
+as a dependency manager.

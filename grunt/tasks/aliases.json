@@ -1,0 +1,8 @@
+{
+  "default": [
+    "uglify"
+  ],
+  "test": [
+    "jshint"
+  ]
+}
