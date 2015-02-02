@@ -67,8 +67,8 @@
           _thresholds.scroll = _thresholds.flex - _thresholds.scroll;
         }
 
-        _debounce = function(fn, threshhold) {
-          threshhold = threshhold || 500;
+        _debounce = function(fn, threshold) {
+          threshold = threshold || 500;
 
           // Time of last call and timer id
           var last,
@@ -81,11 +81,11 @@
               now = +new Date(),
               args = arguments;
 
-            // If condidion holds, execution will be
-            // delayed and put on event loopsi with setTimeout
+            // If condition holds, execution will be
+            // delayed and put on event loop with setTimeout
             // keeping track of resulting timer id
             // to potentially clear previous timeouts
-            if (last && now < last + threshhold) {
+            if (last && now < last + threshold) {
               // Using timeout through angular's $window
               // but not using $timeout to not interfere
               // with digest cycles
@@ -94,7 +94,7 @@
               deferTimer = $window.setTimeout(function() {
                 last = now;
                 fn.apply(this, args);
-              }, threshhold);
+              }, threshold);
             // Last is now and apply is called on the passed in
             // fn executing it
             } else {
@@ -119,11 +119,14 @@
 
           // Scroll if
           _shouldScroll = (
-            // Not scrolling up
-            _viewport.scrollTop > _last.scrollTop && (
+            // It has been scrolled at all
+            _viewport.scrollTop > 0 &&
+            // Not scrolling up if scrolled already
+            (_last.scrollTop || _viewport.scrollTop > _last.scrollTop) && (
               // distance to buttom surpasses the threshold
               _distance < _thresholds.scroll ||
               // or distance is below 0
+              // in case of fast scrolling with high idles or throttle values
               _distance <= 0
             ) &&
             // and enough time since last invocation passed
@@ -132,7 +135,7 @@
 
           _last.scrollTop = _viewport.scrollTop;
 
-          if (_shouldScroll) { _invokeHandler(); }
+          if (_shouldScroll) { return _invokeHandler(); }
         };
 
         _invokeHandler = function() {
@@ -140,7 +143,7 @@
           _last.invocation = +new Date();
           // Putting scrolling handler on event queue to
           // not interfere with angular's digests!
-          $timeout($scope.handler);
+          return $timeout($scope.handler);
         };
 
         // Bind to scrolling on elem
@@ -155,9 +158,8 @@
           elem.unbind('scroll', _determineScrolling);
         });
 
-        // To maintain integrity loading will occur without scrolling
-        // avoiding a first hiccup when list is shorter than expected.
-        _determineScrolling();
+        // To enable external testing return the $timeout promise
+        return _determineScrolling();
       }
     };
   }]);
